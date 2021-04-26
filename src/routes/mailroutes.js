@@ -7,6 +7,7 @@ module.exports = function (controller) {
       const content =  await controller.build(req.query.email)
       res.set('Content-Type', 'text/html').send(content.html)
     } catch (e) {
+      logger.debug({ label: 'mail routes', message: e })
       res.status(400).send(e.message)
     }
   })
